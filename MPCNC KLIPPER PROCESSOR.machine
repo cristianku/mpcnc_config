@@ -1,77 +1,155 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<machine xmlns="http://www.hsmworks.com/xml/2009/machine">
+{
+   "controller" : {
+      "synced_configuration" : {
+         "max_block_processing_speed" : 0,
+         "max_normal_speed" : 10000,
+         "parts" : {
+            "X" : {
+               "coordinate" : 0,
+               "max_normal_speed" : 10000,
+               "max_rapid_speed" : 0,
+               "preference" : "no preference",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : true,
+               "zero_position_offset" : 0
+            },
+            "Y" : {
+               "coordinate" : 1,
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "no preference",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : true,
+               "zero_position_offset" : 0
+            },
+            "Z" : {
+               "coordinate" : 2,
+               "max_normal_speed" : 0,
+               "max_rapid_speed" : 0,
+               "preference" : "no preference",
+               "reset" : "never",
+               "reversed" : false,
+               "tcp" : true,
+               "zero_position_offset" : 0
+            }
+         }
+      }
+   },
+   "general" : {
+      "capabilities" : [ "milling" ],
+      "description" : "Klipper mpcnc",
+      "minimumRevision" : 45805,
+      "vendor" : "Autodesk"
+   },
+   "kinematics" : {
+      "default" : {
+         "conventions" : {
+            "rotation" : "right-handed"
+         },
+         "parts" : [
+            {
+               "id" : "static_0",
+               "type" : "static"
+            },
+            {
+               "attach_frame" : {
+                  "point" : [ 0, 0, 0 ],
+                  "x_direction" : [ 1, -0, 0 ],
+                  "z_direction" : [ 0, 0, 1 ]
+               },
+               "id" : "head",
+               "spindle" : {
+                  "max_speed" : 12000,
+                  "min_speed" : 1000
+               },
+               "tool_station" : {
+                  "coolants" : null,
+                  "max_tool_diameter" : 0,
+                  "max_tool_length" : 0
+               },
+               "type" : "head"
+            },
+            {
+               "control" : "driven",
+               "direction" : [ -1, -0, -0 ],
+               "id" : "X",
+               "name" : "X",
+               "parts" : [
+                  {
+                     "control" : "driven",
+                     "direction" : [ -0, -1, -0 ],
+                     "id" : "Y",
+                     "name" : "Y",
+                     "parts" : [
+                        {
+                           "control" : "driven",
+                           "direction" : [ -0, -0, -1 ],
+                           "id" : "Z",
+                           "name" : "Z",
+                           "parts" : [
+                              {
+                                 "attach_frame" : {
+                                    "point" : [ 0, 0, 0 ],
+                                    "x_direction" : [ 1, -0, 0 ],
+                                    "z_direction" : [ 0, 0, 1 ]
+                                 },
+                                 "id" : "table",
+                                 "type" : "table"
+                              }
+                           ],
+                           "type" : "linear"
+                        }
+                     ],
+                     "type" : "linear"
+                  }
+               ],
+               "type" : "linear"
+            }
+         ],
+         "units" : {
+            "angle" : "degrees",
+            "length" : "mm"
+         }
+      }
+   },
+   "machining" : {
+      "default" : {
+         "feedrate_ratio" : 1,
+         "tool_change_time" : 15
+      }
+   },
+   "multiaxis" : {
+      "default" : {
+         "retract_and_reconfigure" : {
+            "enabled" : true,
+            "safe_plunge_feedrate" : 250,
+            "safe_retract_distance" : 25,
+            "safe_retract_feedrate" : 500,
+            "stock_expansion" : [ 2.5, 2.5, 2.5 ]
+         },
+         "singularity" : {
+            "adjust" : true,
+            "angle" : 0.17453292519943295,
+            "cone" : 0.05235987755982989,
+            "method" : "off",
+            "tolerance" : 0.040000000000000001
+         },
+         "virtual_tool_tip" : false
+      }
+   },
+   "post" : {
+      "default" : {
+         "path" : "cloud://Klipper 2.cps"
+      }
+   },
+   "tooling" : {
+      "default" : {
+         "has_tool_changer" : false,
+         "number_of_tools" : 100,
+         "supports_tool_preload" : false
+      }
+   }
+}
 
-  <vendor>Autodesk</vendor>
-
-  <model></model>
-
-  <description>Klipper mpcnc</description>
-
-  <control></control>
-
-  <machining additive="no" inspection="no" jet="no" milling="yes" turning="no"/>
-
-  <dimensions depth="60mm" height="365mm" weight="0kg" width="690mm"/>
-
-  <capacities depth="365mm" height="60mm" weight="0kg" width="690mm"/>
-
-  <png128></png128>
-
-  <mtk></mtk>
-
-  <controllerConfigurations></controllerConfigurations>
-
-  <fusion>
-    <model></model>
-  </fusion>
-
-  <custom>
-    <data></data>
-    <name></name>
-    <softwareVersion></softwareVersion>
-    <network ip="" port="" protocol=""/>
-    <serial></serial>
-  </custom>
-
-  <machine_connector capability="no" connectionMethod="Ethernet (TCP/IP)">
-    <application machineConnectorIdent="" machineConnectorIp="127.0.0.1" machineConnectorPath="" machineConnectorPort="50000"/>
-    <broker brokerIp="" brokerPort=""/>
-    <serial_connection baudRate="115200" bits="7" dataBufferSerial="100" flow="XON/XOFF" parity="Even" port="1" stopBits="1"/>
-    <ethernet_connection MDCPort="5051" dataBufferEthernet="10100"/>
-  </machine_connector>
-
-  <coolant options=""/>
-
-  <multiAxis adjust="yes" angle="10deg" bpwRatio="1" cone="3deg" feedrateMethod="fpm" feedrateType="combination" linearizationTolerance="0.040000000000000001mm" maximumFeedrate="9999.9899999999998" method="off" outputTolerance="0.5" reconfigure="yes" safePlungeFeedrate="250mm/min" safeRetractDistance="25mm" safeRetractFeedrate="500mm/min" stockExpansion="2.5mm 2.5mm 2.5mm" tolerance="0.040000000000000001mm" virtualToolTip="no"/>
-
-  <tooling maximumToolDiameter="0mm" maximumToolLength="0mm" maximumToolWeight="0kg" numberOfTools="100" toolChanger="no" toolPreload="no"/>
-
-  <machiningTime ratio="1" toolChangeTime="15s"/>
-
-  <capabilities maximumBlockProcessingSpeed="0" maximumFeedrate="10000mm/min" workOffsets="100"/>
-
-  <simulation retractOnIndexing="yes" shortestAngularRotation="yes" tableAttachPoint="0mm 0mm 0mm" toolAttachPoint="0mm 0mm 0mm" wcs="0mm 0mm 0mm">
-    <machineAssembly></machineAssembly>
-  </simulation>
-
-  <post>
-    <postProcessor>cloud://Klipper 2.cps</postProcessor>
-    <postProperties>
-      <Parameters/>
-    </postProperties>
-    <setupSheet></setupSheet>
-    <setupSheetProperties/>
-    <outputFolder></outputFolder>
-  </post>
-
-  <axis actuator="linear" coordinate="X" homePosition="0mm" id="X" link="table" maximumFeed="10000mm/min" name="" offset="0mm 0mm 0mm" rapidFeed="0mm/min" resolution="0mm"/>
-
-  <axis actuator="linear" coordinate="Y" homePosition="0mm" id="Y" link="table" maximumFeed="0mm/min" name="" offset="0mm 0mm 0mm" rapidFeed="0mm/min" resolution="0mm"/>
-
-  <axis actuator="linear" coordinate="Z" homePosition="0mm" id="Z" link="table" maximumFeed="0mm/min" name="" offset="0mm 0mm 0mm" rapidFeed="0mm/min" resolution="0mm"/>
-
-  <spindle axis="0 0 1" maximumSpeed="12000rpm" minimumSpeed="1000rpm">
-    <description></description>
-  </spindle>
-
-</machine>
