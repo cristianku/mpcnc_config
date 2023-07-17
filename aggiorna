@@ -1,0 +1,3 @@
+git add printer.cfg
+git commit -m "aa"
+git push
