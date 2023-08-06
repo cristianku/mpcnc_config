@@ -1,3 +1,4 @@
+######
 cd ~/printer_data/config
 cp ~/push.sh .
 cp ~/klipper/.config menuconfig_configs/klipper.config
