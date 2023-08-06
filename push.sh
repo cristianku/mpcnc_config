@@ -1,5 +1,5 @@
-git add printer.cfg
-git add aggiorna
-git add push.sh
-git commit -m"commit"
+cd ~/printer_data/config
+cp ~/push.sh .
+git add .
+git commit -m"aaa"
 git push
